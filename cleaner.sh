@@ -2,7 +2,7 @@
 cd ~/
 rm -rf .catcoin
 rm -rf eiquidus
-cd explorer/installer
+cd /home/explorer/Eiquidus-installer
 rm -rf Catcoin-v0.9.3.0
 rm install.log
 exit 0
