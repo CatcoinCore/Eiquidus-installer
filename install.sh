@@ -42,12 +42,13 @@ if [ $retVal -ne 0 ]; then
 fi
 
 printf "\nCloning repositories - Catcoin and Eiquidus...\n"
+printf "\n"
 sleep 5
 cd $current_dir
 git clone https://github.com/CatcoinCore/Catcoin-v0.9.3.0.git
 cd ~/
 cd explorer
-git clone https://github.com/Cminor-pools/eiquidus.git -b CatCoin
+git clone https://github.com/CatcoinCore/eiquidus.git -b CatCoin
 
 # Build Catcoin #
 printf "\n"
@@ -63,10 +64,12 @@ cp config/catcoin ~/.catcoin/catcoin.conf
 cd $current_dir/Catcoin-v0.9.3.0/src
 cat_dir=$PWD
 ./catcoind
+printf "\n"
 
 # Mongodb cli create database and user #
 cd $current_dir
 sudo mongosh < config/mongo_init.js
+printf "\n"
 
 # Haproxy #
 cd $current_dir
