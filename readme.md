@@ -22,7 +22,7 @@ Usage:
 
    cd Eiquidus-installer
 
-   chmod +x install.sh dependencies.sh
+   chmod +x install.sh dependencies.sh && chmod -R 755 config
 
    ./install.sh
 
