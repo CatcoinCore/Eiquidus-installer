@@ -1,5 +1,5 @@
 
-### Catcoin Explorer Installer Ubuntu 20/22/24 ###
+### Catcoin explorer auto installer Ubuntu 20/22/24 ###
 
 
 Recommended minimum: 2 core server
@@ -8,10 +8,12 @@ Recommended minimum: 2 core server
 Usage:
 
 
-1) apt update && apt -y upgrade
+1) Server root user:
+
+   " apt update && apt -y upgrade "
 
 
-2) Create user
+2) Create explorer user
 
    " sudo adduser explorer "
    (Remember the pass)
