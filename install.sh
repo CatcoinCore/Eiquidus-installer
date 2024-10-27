@@ -31,7 +31,7 @@ sudo bash dependencies.sh > install.log &
 dependencies_pid=$!
 printf "\nSystem update and packages install...\n"
 printf "\nBuilding boost plus installing additional packages...\n"
-printf "\nThis will take a long time... Minimal output please wait patiently...\n"
+printf "\nThis will take a long time... Minimal output... Please wait patiently...\n"
 printf "\n"
 wait $dependencies_pid
 # Check if exit status was non-zero #
