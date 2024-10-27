@@ -46,7 +46,6 @@ printf "\n"
 cd $current_dir
 git clone https://github.com/CatcoinCore/Catcoin-v0.9.3.0.git
 cd ~/
-cd explorer
 git clone https://github.com/CatcoinCore/eiquidus.git -b CatCoin
 
 # Build Catcoin #
