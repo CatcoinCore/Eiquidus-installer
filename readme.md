@@ -1,5 +1,5 @@
 
-### Catcoin explorer auto installer Ubuntu 20/22/24 ###
+### Catcoin explorer installer Ubuntu 20/22/24 ###
 
 
 Recommended minimum: 2 core server
