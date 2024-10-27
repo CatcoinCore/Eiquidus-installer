@@ -1,35 +1,46 @@
 
-### Catcoin explorer auto installer script Ubuntu 20/22/24 ###
+### Catcoin Explorer Installer Ubuntu 20/22/24 ###
+
+
+Recommended minimum: 2 core server
 
 
 Usage:
 
 
-1) Create user
+1) apt update && apt -y upgrade
+
+
+2) Create user
 
    " sudo adduser explorer "
+   (Remember the pass)
 
    " sudo usermod -aG sudo explorer "
 
-   " Logout root: type 'exit' press enter "
+   " sudo reboot "
 
    " Login: ssh explorer@server ip "
 
 
-2) git clone https://github.com/CatcoinCore/Eiquidus-installer
+3) git clone https://github.com/CatcoinCore/Eiquidus-installer
 
-3) Start installation:
+
+4) Start installation:
 
    cd Eiquidus-installer
 
    chmod +x install.sh dependencies.sh && chmod -R 755 config
 
    ./install.sh
+   
+   
+   Follow on screen prompts
 
 
 * When completed - open explorer process "screen -r explorer"
 
-* Never exit this screen it’s the explorer main process
+* Never “exit” this screen it’s the explorer main process
 
 * close screen with "ctrl+a+d"
 
