@@ -1,8 +1,11 @@
 
-### Catcoin explorer installer Ubuntu 20/22/24 ###
+### Catcoin Explorer Installer Ubuntu 20/22/24 ###
 
 
 Recommended minimum: 2 core server
+
+
+To avoid package conflicts, it's best to run this installer on a fresh server install
 
 
 Usage:
