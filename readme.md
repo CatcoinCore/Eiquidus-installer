@@ -15,11 +15,11 @@ Usage:
 
    " apt update && apt -y upgrade "
 
-   " sudo adduser explorer " (Remember the pass)
+   " adduser explorer " (Remember the pass)
 
-   " sudo usermod -aG sudo explorer "
+   " usermod -aG explorer "
 
-   " sudo reboot "
+   " reboot "
 
    " Login: ssh explorer@server ip "
 
