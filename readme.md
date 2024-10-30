@@ -16,7 +16,7 @@ Usage:
    " apt update && apt -y upgrade "
 
 
-2) Create explorer user
+2) Server root - create explorer user
 
    " sudo adduser explorer "
    (Remember the pass)
@@ -37,7 +37,7 @@ Usage:
 
    chmod +x install.sh dependencies.sh && chmod -R 755 config
 
-   ./install.sh
+   bash install.sh
    
    
    Follow on screen prompts
@@ -55,3 +55,5 @@ Explorer url: register a domain name point at server ip or use with server ip
 http://domain-name.com
 
 http://server-ip
+
+https://domain-name.com -> with Cloudflare
