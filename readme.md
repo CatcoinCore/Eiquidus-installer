@@ -46,7 +46,7 @@ Usage:
 * close screen with "ctrl+a+d"
 
 
-Explorer url: register a domain name point at server ip or use with server ip
+Explorer url: register a domain name point dns at server ip or use with server ip
 
 http://domain-name.com
 
