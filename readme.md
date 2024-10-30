@@ -17,7 +17,7 @@ Usage:
 
    " adduser explorer " (Remember the pass)
 
-   " usermod -aG explorer "
+   " usermod -aG sudo explorer "
 
    " reboot "
 
