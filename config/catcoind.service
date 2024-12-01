@@ -5,7 +5,7 @@ After=network.target
 Type=forking
 ExecStart=/usr/local/bin/catcoind -conf=/home/explorer/.catcoin/catcoin.conf -datadir=/home/explorer/.catcoin -daemon
 ExecStop=/usr/local/bin/catcoind -conf=/home/explorer/.catcoin/catcoin.conf -datadir=/home/explorer/.catcoin stop
-ExecReload=/bin/kill -s HUP $MAINPID
+ExecReload=/usr/local/bin/kill -s HUP $MAINPID
 Restart=on-abnormal
 TimeoutStopSec=300
 PrivateTmp=true
