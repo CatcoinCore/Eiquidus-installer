@@ -15,26 +15,12 @@ Usage:
 
    " apt update && apt -y upgrade "
 
-   " adduser explorer " (Remember the pass)
-
-   " usermod -aG sudo explorer "
-
-   " reboot "
-
-   " Login: ssh explorer@server ip "
-
 
 2) git clone https://github.com/CatcoinCore/Eiquidus-installer
 
-
-3) Start installation:
-
    cd Eiquidus-installer
 
-   chmod +x install.sh dependencies.sh && chmod -R 755 config
-
    bash install.sh
-   
    
    Follow on screen prompts
 
