@@ -94,13 +94,16 @@ cd $current_dir
 cd /home/explorer/eiquidus
 screen -dmS explorer bash -c "bash  /home/explorer/Eiquidus-installer/config/screen.sh"
 
-# Crons and scripts - updates blocks, peers & markets #
+# Cron's and scripts - updates blocks, peers & markets #
 printf "\n"
 printf "\nCron setup... Done.\n"
 cd $current_dir
 cp config/blocks.sh /home/explorer/eiquidus/scripts/blocks.sh
 cp config/peers.sh /home/explorer/eiquidus/scripts/peers.sh
 cp config/markets.sh /home/explorer/eiquidus/scripts/markets.sh
+chmod a+x /home/explorer/eiquidus/scripts/blocks.sh
+chmod a+x /home/explorer/eiquidus/scripts/peers.sh
+chmod a+x /home/explorer/eiquidus/scripts/markets.sh
 (crontab -l 2>/dev/null; echo "*/1 * * * * cd /home/explorer/eiquidus/scripts && ./blocks.sh > /dev/null 2>&1") | crontab -
 (crontab -l 2>/dev/null; echo "*/5 * * * * cd /home/explorer/eiquidus/scripts && ./peers.sh > /dev/null 2>&1") | crontab -
 (crontab -l 2>/dev/null; echo "*/10 * * * * cd /home/explorer/eiquidus/scripts && ./markets.sh > /dev/null 2>&1") | crontab -
