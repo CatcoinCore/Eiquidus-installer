@@ -7,25 +7,35 @@ cat_dir=""
 # Verify the installer has not been invoked as root user #
 if [[ $EUID == 0 ]]; then
    echo ""
-   echo " Do not run this script as root user!"
+   echo " * Do not run this script as root user! *"
    echo ""
-   echo “ Create user ”
-   echo “ sudo adduser explorer ”
-   echo “ sudo usermod -aG sudo explorer ”
-   echo “ Logout root: type 'exit' press enter ”
-   echo “ Login: ssh explorer@server ip ”
+   echo " * Creating explorer user.. Please follow on screen prompts.. *"
+   echo ""
+   sleep 10
+   adduser explorer
+   usermod -aG sudo explorer
+   cp -R /root/Eiquidus-installer /home/explorer/Eiquidus-installer
+   chown -R explorer:explorer /home/explorer/Eiquidus-installer
+   chmod -R 755 /home/explorer/Eiquidus-installer
+   echo ""
+   echo " * Logout root: type 'exit' press enter *"
+   echo ""
+   echo " * Login: ssh explorer@server ip *"
+   echo ""
+   echo " * Start setup: cd Eiquidus-installer && bash install.sh *"
    echo ""
    exit 1
 fi
 
 printf "\n"
-printf "Welcome to Catcoin explorer setup!\n"
 printf "\n"
-printf "This script has been tested on Ubuntu 20/22/24 server.\n"
+printf " ** Welcome to Catcoin Explorer Setup! **\n"
 printf "\n"
-printf "First we will check that our prerequisite packages are installed.\n"
+printf " This script has been tested on Ubuntu 20/22/24 server.\n"
 printf "\n"
-read -p "Press enter to continue..."
+printf " First we will check prerequisite packages are installed.\n"
+printf "\n"
+read -p " Press Enter to Continue..."$'\n' Continue
 
 sudo bash dependencies.sh > install.log &
 dependencies_pid=$!
@@ -96,5 +106,6 @@ cp config/markets.sh /home/explorer/eiquidus/scripts/markets.sh
 (crontab -l 2>/dev/null; echo "*/10 * * * * cd /home/explorer/eiquidus/scripts && ./markets.sh > /dev/null 2>&1") | crontab -
 
 printf "\n"
-printf "\nInstallation compete.\n"
+printf "\n** Installation Compete. **\n"
+printf "\n"
 printf "\n"
