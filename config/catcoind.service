@@ -1,16 +1,16 @@
 [Unit]
-Description=Catcoin service
+Description=Catcoin Node
 After=network.target
+
 [Service]
-Type=forking
-ExecStart=/usr/local/bin/catcoind -conf=/home/explorer/.catcoin/catcoin.conf -datadir=/home/explorer/.catcoin -daemon
-ExecStop=/usr/local/bin/catcoind -conf=/home/explorer/.catcoin/catcoin.conf -datadir=/home/explorer/.catcoin stop
-ExecReload=/usr/local/bin/kill -s HUP $MAINPID
+User=explorer
+Group=explorer
+PIDFile=/home/explorer/.catcoin/catcoind.pid
+ExecStart=/home/explorer/coinds/catcoind -daemon -pid=/home/explorer/.catcoin/catcoind.pid \
+-conf=/home/explorer/.catcoin/catcoin.conf -datadir=/home/explorer/.catcoin -disablewallet
+Type=simple
 Restart=always
 RestartSec=30
-TimeoutStopSec=120
-PrivateTmp=true
-LimitNOFILE=65536
-User=explorer
+
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
