@@ -65,20 +65,46 @@ cd $current_dir/Catcoin-v0.9.3.0/src
 {
 make -f makefile.unix
 } > /dev/null 2>&1
+strip catcoind
+mkdir ~/coinds
+cp catcoind ~/coinds/catcoind
+
 # wallet config #
 mkdir ~/.catcoin
 cd $current_dir
 cp config/catcoin ~/.catcoin/catcoin.conf
-# Start Catcoin wallet #
-cd $current_dir/Catcoin-v0.9.3.0/src
-cat_dir=$PWD
-./catcoind
 
-# Mongodb cli create database and user #
+# Catcoin wallet system service #
+printf "\n"
+printf "\nCatcoin node system service... Done.\n"
+cd $current_dir
+sudo cp config/catcoind.service /etc/systemd/system/catcoind.service
+chown root:root /etc/systemd/system/catcoind.service
+sudo systemctl daemon-reload
+sudo systemctl enable catcoind
+sudo systemctl start catcoind
+
+# Mongodb create database and user #
 printf "\n"
 printf "\nDb setup... Done.\n"
 cd $current_dir
 sudo mongosh < config/mongo_init.js
+
+# Explorer node install #
+printf "\n"
+printf "\nNode modules... Done.\n"
+cd /home/explorer/eiquidus
+npm install --only=prod
+
+# Catcoin explorer system service #
+printf "\n"
+printf "\nExplorer system service... Done.\n"
+cd $current_dir
+sudo cp config/explorer.service /etc/systemd/system/explorer.service
+chown root:root /etc/systemd/system/explorer.service
+sudo systemctl daemon-reload
+sudo systemctl enable explorer
+sudo systemctl start explorer
 
 # Haproxy #
 printf "\n"
@@ -87,26 +113,31 @@ cd $current_dir
 sudo cp config/haproxy /etc/haproxy/haproxy.cfg
 sudo service haproxy reload
 
-# Explorer process start #
+# Ufw rules #
 printf "\n"
-printf "\nScreen setup... Done.\n"
-cd $current_dir
-cd /home/explorer/eiquidus
-screen -dmS explorer bash -c "bash  /home/explorer/Eiquidus-installer/config/screen.sh"
+printf "\Ufw setup... Done.\n"
+sudo ufw allow 22
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw enable
 
-# Cron's and scripts - updates blocks, peers & markets #
+# Crons and scripts - explorer blocks, peers, markets & system updates #
 printf "\n"
 printf "\nCron setup... Done.\n"
 cd $current_dir
 cp config/blocks.sh /home/explorer/eiquidus/scripts/blocks.sh
 cp config/peers.sh /home/explorer/eiquidus/scripts/peers.sh
 cp config/markets.sh /home/explorer/eiquidus/scripts/markets.sh
-chmod a+x /home/explorer/eiquidus/scripts/blocks.sh
-chmod a+x /home/explorer/eiquidus/scripts/peers.sh
-chmod a+x /home/explorer/eiquidus/scripts/markets.sh
-(crontab -l 2>/dev/null; echo "*/1 * * * * cd /home/explorer/eiquidus/scripts && ./blocks.sh > /dev/null 2>&1") | crontab -
-(crontab -l 2>/dev/null; echo "*/5 * * * * cd /home/explorer/eiquidus/scripts && ./peers.sh > /dev/null 2>&1") | crontab -
-(crontab -l 2>/dev/null; echo "*/10 * * * * cd /home/explorer/eiquidus/scripts && ./markets.sh > /dev/null 2>&1") | crontab -
+cd /home/explorer/eiquidus/scripts
+chmod a+x markets.sh peers.sh blocks.sh
+(crontab -l 2>/dev/null; echo "#") | sudo crontab -
+(crontab -l 2>/dev/null; echo "*/1 * * * * cd /home/explorer/eiquidus/scripts && ./blocks.sh > /dev/null 2>&1") | sudo crontab -
+(crontab -l 2>/dev/null; echo "*/5 * * * * cd /home/explorer/eiquidus/scripts && ./peers.sh > /dev/null 2>&1") | sudo crontab -
+(crontab -l 2>/dev/null; echo "*/10 * * * * cd /home/explorer/eiquidus/scripts && ./markets.sh > /dev/null 2>&1") | sudo crontab -
+(crontab -l 2>/dev/null; echo "#") | sudo crontab -
+(crontab -l 2>/dev/null; echo "@monthly sleep 2 && sudo reboot > /dev/null 2>&1") | sudo crontab -
+(crontab -l 2>/dev/null; echo "12 12 * * * sleep 2 && sudo apt-get update && sudo apt-get -y --with-new-pkgs upgrade && sudo apt-get -y autoremove > /dev/null 2>&1") | sudo crontab -
+(crontab -l 2>/dev/null; echo "#") | sudo crontab -
 
 printf "\n"
 printf "\n** Installation Compete. **\n"
