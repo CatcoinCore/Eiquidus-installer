@@ -41,7 +41,7 @@ sudo bash dependencies.sh > install.log &
 dependencies_pid=$!
 printf "\nSystem update and packages install...\n"
 printf "\nBuilding boost plus installing additional packages...\n"
-printf "\nThis will take a long time... Minimal output... Please wait patiently...\n"
+printf "\nThis will take a long time 10-15 minutes... Minimal output... Please wait patiently...\n"
 printf "\n"
 wait $dependencies_pid
 # Check if exit status was non-zero #
@@ -60,7 +60,7 @@ git clone https://github.com/CatcoinCore/eiquidus.git -b CatCoin
 
 # Build Catcoin #
 printf "\n"
-printf "\nBuilding Catcoin... This will take some time...\n"
+printf "\nBuilding Catcoin wallet... This will take some time 5-10 minutes... Please wait patiently...\n"
 cd $current_dir/Catcoin-v0.9.3.0/src
 {
 make -f makefile.unix
@@ -77,9 +77,10 @@ cp config/catcoin ~/.catcoin/catcoin.conf
 # Catcoin wallet system service #
 printf "\n"
 printf "\nCatcoin node system service... Done.\n"
+printf "\n"
 cd $current_dir
 sudo cp config/catcoind.service /etc/systemd/system/catcoind.service
-chown root:root /etc/systemd/system/catcoind.service
+sudo chown root:root /etc/systemd/system/catcoind.service
 sudo systemctl daemon-reload
 sudo systemctl enable catcoind
 sudo systemctl start catcoind
@@ -99,9 +100,10 @@ npm install --only=prod
 # Catcoin explorer system service #
 printf "\n"
 printf "\nExplorer system service... Done.\n"
+printf "\n"
 cd $current_dir
 sudo cp config/explorer.service /etc/systemd/system/explorer.service
-chown root:root /etc/systemd/system/explorer.service
+sudo chown root:root /etc/systemd/system/explorer.service
 sudo systemctl daemon-reload
 sudo systemctl enable explorer
 sudo systemctl start explorer
@@ -115,7 +117,10 @@ sudo service haproxy reload
 
 # Ufw rules #
 printf "\n"
-printf "\Ufw setup... Done.\n"
+printf "\nUfw setup... Done.\n"
+printf "\n"
+printf "\nSelect (y) yes & press enter.\n"
+printf "\n"
 sudo ufw allow 22
 sudo ufw allow 80
 sudo ufw allow 443
