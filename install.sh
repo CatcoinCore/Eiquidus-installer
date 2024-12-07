@@ -7,9 +7,9 @@ cat_dir=""
 # Verify the installer has not been invoked as root user #
 if [[ $EUID == 0 ]]; then
    echo ""
-   echo " * Do not run this script as root user! *"
+   echo " * Creating explorer user. *"
    echo ""
-   echo " * Creating explorer user.. Please write down or remember the password & follow on screen prompts.. *"
+   echo " * Please write down or remember the password & follow on screen prompts. *"
    echo ""
    sleep 10
    adduser explorer
@@ -39,7 +39,7 @@ read -p " Press Enter to Continue..."$'\n' Continue
 
 sudo bash dependencies.sh > install.log &
 dependencies_pid=$!
-printf "\nSystem update and packages install...\n"
+printf "\nSystem build packages install...\n"
 printf "\nBuilding boost plus installing additional packages...\n"
 printf "\nThis will take a long time 10-15 minutes... Minimal output... Please wait patiently...\n"
 printf "\n"
