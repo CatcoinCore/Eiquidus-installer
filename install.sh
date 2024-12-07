@@ -9,7 +9,7 @@ if [[ $EUID == 0 ]]; then
    echo ""
    echo " * Do not run this script as root user! *"
    echo ""
-   echo " * Creating explorer user.. Please follow on screen prompts.. *"
+   echo " * Creating explorer user.. Please write down or remember the password & follow on screen prompts.. *"
    echo ""
    sleep 10
    adduser explorer
