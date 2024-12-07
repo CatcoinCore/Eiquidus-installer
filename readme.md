@@ -13,23 +13,25 @@ Usage:
 
 1) Server root user:
 
-   " apt update && apt -y upgrade "
+    " apt update && apt -y upgrade "
+
 
 
 2) git clone https://github.com/CatcoinCore/Eiquidus-installer
 
-   cd Eiquidus-installer
+    cd Eiquidus-installer
 
-   bash install.sh
-   
-   Follow on screen prompts
+    bash install.sh
+
+    Follow on screen prompts
 
 
-* When completed - open explorer process "screen -r explorer"
+* Service Control
 
-* Never “exit” this screen it’s the explorer main process
+    sudo systemctl start/stop/status catcoind
 
-* close screen with "ctrl+a+d"
+    sudo systemctl start/stop/status explorer
+
 
 
 Explorer url: register a domain name point dns at server ip or use with server ip
