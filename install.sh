@@ -119,7 +119,7 @@ sudo service haproxy reload
 printf "\n"
 printf "\nUfw setup... Done.\n"
 printf "\n"
-printf "\nSelect (y) yes & press enter.\n"
+printf "\nSelect (y) & press enter.\n"
 printf "\n"
 sudo ufw allow 22
 sudo ufw allow 80
@@ -135,14 +135,10 @@ cp config/peers.sh /home/explorer/eiquidus/scripts/peers.sh
 cp config/markets.sh /home/explorer/eiquidus/scripts/markets.sh
 cd /home/explorer/eiquidus/scripts
 chmod a+x markets.sh peers.sh blocks.sh
-(crontab -l 2>/dev/null; echo "#") | sudo crontab -
-(crontab -l 2>/dev/null; echo "*/1 * * * * cd /home/explorer/eiquidus/scripts && ./blocks.sh > /dev/null 2>&1") | sudo crontab -
-(crontab -l 2>/dev/null; echo "*/5 * * * * cd /home/explorer/eiquidus/scripts && ./peers.sh > /dev/null 2>&1") | sudo crontab -
-(crontab -l 2>/dev/null; echo "*/10 * * * * cd /home/explorer/eiquidus/scripts && ./markets.sh > /dev/null 2>&1") | sudo crontab -
-(crontab -l 2>/dev/null; echo "#") | sudo crontab -
-(crontab -l 2>/dev/null; echo "@monthly sleep 2 && sudo reboot > /dev/null 2>&1") | sudo crontab -
-(crontab -l 2>/dev/null; echo "12 12 * * * sleep 2 && sudo apt-get update && sudo apt-get -y --with-new-pkgs upgrade && sudo apt-get -y autoremove > /dev/null 2>&1") | sudo crontab -
-(crontab -l 2>/dev/null; echo "#") | sudo crontab -
+cd $current_dir
+sudo cp config/root /var/spool/cron/crontabs/root
+sudo chown root:crontab /var/spool/cron/crontabs/root
+chmod 600 /var/spool/cron/crontabs/root
 
 printf "\n"
 printf "\n** Installation Compete. **\n"
