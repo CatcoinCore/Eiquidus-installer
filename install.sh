@@ -138,7 +138,7 @@ chmod a+x markets.sh peers.sh blocks.sh
 cd $current_dir
 sudo cp config/root /var/spool/cron/crontabs/root
 sudo chown root:crontab /var/spool/cron/crontabs/root
-chmod 600 /var/spool/cron/crontabs/root
+sudo chmod 600 /var/spool/cron/crontabs/root
 
 printf "\n"
 printf "\n** Installation Compete. **\n"
