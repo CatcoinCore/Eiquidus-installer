@@ -9,7 +9,7 @@ if [[ $EUID == 0 ]]; then
    echo ""
    echo " * Creating explorer user. *"
    echo ""
-   echo " * Please write down or remember the password & follow on screen prompts. *"
+   echo " * Please write down or remember this password & follow on screen prompts. *"
    echo ""
    sleep 10
    adduser explorer
@@ -18,11 +18,12 @@ if [[ $EUID == 0 ]]; then
    chown -R explorer:explorer /home/explorer/Eiquidus-installer
    chmod -R 755 /home/explorer/Eiquidus-installer
    echo ""
+   echo ""
    echo " * Please write down or take a picture of info below *"
    echo ""
-   echo " * Must restart here or install will fail *"
+   echo " * Must restart now or install will fail *"
    echo ""
-   echo " * Type "reboot" & press enter  *"
+   echo " * Type [reboot] press enter  *"
    echo ""
    echo " * At next startup continue the install *"
    echo ""
@@ -30,7 +31,7 @@ if [[ $EUID == 0 ]]; then
    echo ""
    echo " * Start setup: cd Eiquidus-installer && bash install.sh *"
    echo ""
-   echo " * Follow on screen prompts *"
+   echo ""
    exit 1
 fi
 
