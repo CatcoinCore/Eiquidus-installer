@@ -76,15 +76,15 @@ make -f makefile.unix
 strip catcoind
 mkdir ~/coinds
 cp catcoind ~/coinds/catcoind
-
 # wallet config #
 mkdir ~/.catcoin
 cd $current_dir
 cp config/catcoin ~/.catcoin/catcoin.conf
+printf "\nCatcoin wallet build... Done.\n"
 
 # Catcoin wallet system service #
 printf "\n"
-printf "\nCatcoin node system service... Done.\n"
+printf "\nCatcoin wallet system service install...\n"
 printf "\n"
 cd $current_dir
 sudo cp config/catcoind.service /etc/systemd/system/catcoind.service
@@ -92,22 +92,25 @@ sudo chown root:root /etc/systemd/system/catcoind.service
 sudo systemctl daemon-reload
 sudo systemctl enable catcoind
 sudo systemctl start catcoind
+printf "\nCatcoin wallet system service... Done.\n"
 
 # Mongodb create database and user #
 printf "\n"
-printf "\nDb setup... Done.\n"
+printf "\nDb/user install...\n"
 cd $current_dir
 sudo mongosh < config/mongo_init.js
+printf "\nDb/user setup... Done.\n"
 
 # Explorer node modules install #
 printf "\n"
-printf "\nNode modules... Done.\n"
+printf "\nNode modules install...\n"
 cd /home/explorer/eiquidus
 npm install --only=prod
+printf "\nNode modules... Done.\n"
 
 # Catcoin explorer system service #
 printf "\n"
-printf "\nExplorer system service... Done.\n"
+printf "\nExplorer system service install...\n"
 printf "\n"
 cd $current_dir
 sudo cp config/explorer.service /etc/systemd/system/explorer.service
@@ -115,17 +118,19 @@ sudo chown root:root /etc/systemd/system/explorer.service
 sudo systemctl daemon-reload
 sudo systemctl enable explorer
 sudo systemctl start explorer
+printf "\nExplorer system service... Done.\n"
 
 # Haproxy #
 printf "\n"
-printf "\nHaproxy setup... Done.\n"
+printf "\nHaproxy install...\n"
 cd $current_dir
 sudo cp config/haproxy /etc/haproxy/haproxy.cfg
 sudo service haproxy reload
+printf "\nHaproxy setup... Done.\n"
 
 # Ufw rules #
 printf "\n"
-printf "\nUfw setup... Done.\n"
+printf "\nUfw install...\n"
 printf "\n"
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
@@ -133,10 +138,11 @@ sudo ufw allow ssh
 sudo ufw allow http
 sudo ufw allow https
 sudo ufw --force enable
+printf "\nUfw setup... Done.\n"
 
 # Crons and scripts - explorer blocks, peers, markets & system updates #
 printf "\n"
-printf "\nCron setup... Done.\n"
+printf "\nCrons/scripts install...\n"
 cd $current_dir
 cp config/blocks.sh /home/explorer/eiquidus/scripts/blocks.sh
 cp config/peers.sh /home/explorer/eiquidus/scripts/peers.sh
@@ -147,6 +153,7 @@ cd $current_dir
 sudo cp config/root /var/spool/cron/crontabs/root
 sudo chown root:crontab /var/spool/cron/crontabs/root
 sudo chmod 600 /var/spool/cron/crontabs/root
+printf "\nCrons/scripts setup... Done.\n"
 
 printf "\n"
 printf "\n** Installation Compete. **\n"
