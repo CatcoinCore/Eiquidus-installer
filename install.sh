@@ -18,16 +18,19 @@ if [[ $EUID == 0 ]]; then
    chown -R explorer:explorer /home/explorer/Eiquidus-installer
    chmod -R 755 /home/explorer/Eiquidus-installer
    echo ""
-   echo " * Please write down or take picture of info below & restart *
+   echo " * Please write down or take a picture of info below *"
    echo ""
-   echo " * Type reboot & press enter  *"
+   echo " * Must restart here or install will fail *"
    echo ""
-   echo " * At startup continue the setup *"
+   echo " * Type "reboot" & press enter  *"
+   echo ""
+   echo " * At next startup continue the install *"
    echo ""
    echo " * Login: ssh explorer@server ip *"
    echo ""
    echo " * Start setup: cd Eiquidus-installer && bash install.sh *"
    echo ""
+   echo " * Follow on screen prompts *"
    exit 1
 fi
 
@@ -95,7 +98,7 @@ printf "\nDb setup... Done.\n"
 cd $current_dir
 sudo mongosh < config/mongo_init.js
 
-# Explorer node install #
+# Explorer node modules install #
 printf "\n"
 printf "\nNode modules... Done.\n"
 cd /home/explorer/eiquidus
@@ -125,10 +128,12 @@ printf "\nUfw setup... Done.\n"
 printf "\n"
 printf "\nSelect (y) & press enter.\n"
 printf "\n"
-sudo ufw allow 22
-sudo ufw allow 80
-sudo ufw allow 443
-sudo ufw enable
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw --force enable
 
 # Crons and scripts - explorer blocks, peers, markets & system updates #
 printf "\n"
