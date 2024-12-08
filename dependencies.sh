@@ -28,20 +28,21 @@ printf "\nAdding swap file...\n"
 sleep 2
 sudo fallocate -l 2G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile && sudo echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
 
-# System packages #
-printf "\n"
-printf "\nInstalling additional system build packages...\n"
-sleep 2
-{
-sudo apt-get -y install make curl git libdb++-dev dirmngr gnupg apt-transport-https ca-certificates zlib1g-dev build-essential haproxy ntpdate
-} > /dev/null 2>&1
-
 # Time servers #
 printf "\n"
 printf "\nAdding time servers...\n"
 sleep 2
 sudo ntpdate 0.pool.ntp.org
 sudo ntpdate 1.pool.ntp.org
+
+# gcc 10 for u22/24 compatibility #
+printf "\n"
+printf "\nInstalling gcc-10...\n"
+sleep 2
+{
+sudo apt-get -y install g++-10
+} > /dev/null 2>&1
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10 && sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
 
 # Additional wallet build packages #
 # Catcoin 0.9.3.0 specific packages - can be remove when updated wallet is released #
@@ -53,15 +54,6 @@ wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n
 sudo dpkg -i libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb && sudo dpkg -i libssl1.0-dev_1.0.2n-1ubuntu5.13_amd64.deb && sudo dpkg -i libminiupnpc10_1.9.20140610-4ubuntu2_amd64.deb && sudo dpkg -i libminiupnpc-dev_1.9.20140610-4ubuntu2_amd64.deb
 tar xvf boost1.65.1_1.65.1+dfsg.orig.tar.bz2 && cd boost_1_65_1 && ./bootstrap.sh && sudo ./b2 install && sudo ldconfig
 } > /dev/null 2>&1
-
-# gcc 10 for u22/24 compatibility #
-printf "\n"
-printf "\nInstalling gcc-10...\n"
-sleep 2
-{
-sudo apt-get -y install g++-10
-} > /dev/null 2>&1
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10 && sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
 
 # Catcoin 0.9.3.0 specific - can be removed when updated wallet is released #
 sudo apt-mark hold libminiupnpc-dev
