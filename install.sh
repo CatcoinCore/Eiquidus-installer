@@ -18,7 +18,9 @@ if [[ $EUID == 0 ]]; then
    chown -R explorer:explorer /home/explorer/Eiquidus-installer
    chmod -R 755 /home/explorer/Eiquidus-installer
    echo ""
-   echo " * System will reboot in 2 minutes *"
+   echo " * Please write down or take picture of info below & restart *
+   echo ""
+   echo " * Type reboot & press enter  *"
    echo ""
    echo " * At startup continue the setup *"
    echo ""
@@ -28,9 +30,6 @@ if [[ $EUID == 0 ]]; then
    echo ""
    exit 1
 fi
-
-sleep 120
-reboot
 
 printf "\n"
 printf "\n"
