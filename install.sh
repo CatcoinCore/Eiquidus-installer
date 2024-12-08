@@ -126,8 +126,6 @@ sudo service haproxy reload
 printf "\n"
 printf "\nUfw setup... Done.\n"
 printf "\n"
-printf "\nSelect (y) & press enter.\n"
-printf "\n"
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw allow ssh
