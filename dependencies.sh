@@ -25,38 +25,36 @@ fi
 # Swap file #
 printf "\n"
 printf "\nAdding swap file...\n"
-sleep 2
 sudo fallocate -l 2G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile && sudo echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
-
-# gcc 10 for u22/24 compatibility #
-printf "\n"
-printf "\nInstalling gcc-10...\n"
-sleep 2
-{
-sudo apt-get -y install g++-10
-} > /dev/null 2>&1
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10 && sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
 
 # System packages #
 printf "\n"
 printf "\nInstalling additional system build packages...\n"
-sleep 2
 {
-sudo apt-get -y install make curl git libdb++-dev dirmngr gnupg apt-transport-https ca-certificates zlib1g-dev build-essential haproxy ntpdate
+sudo apt-get -y install make curl git libdb++-dev dirmngr gnupg apt-transport-https ca-certificates zlib1g-dev haproxy ntpdate
+sudo apt-get -y install build-essential
 } > /dev/null 2>&1
 
 # Time servers #
 printf "\n"
 printf "\nAdding time servers...\n"
-sleep 2
 sudo ntpdate 0.pool.ntp.org
 sudo ntpdate 1.pool.ntp.org
+
+# gcc 10 for U22/24 compatibility #
+printf "\n"
+printf "\nInstalling gcc-10...\n"
+{
+sudo apt-get -y install g++-10
+} > /dev/null 2>&1
+#sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10 && sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
+sudo ln -s -f /usr/bin/gcc-10 /usr/bin/gcc
+sudo ln -s -f /usr/bin/g++-10 /usr/bin/g++
 
 # Additional wallet build packages #
 # Catcoin 0.9.3.0 specific packages - can be remove when updated wallet is released #
 printf "\n"
 printf "\nInstalling Catcoin 0.9.3.0 specific build packages...\n"
-sleep 2
 {
 wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb && wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0-dev_1.0.2n-1ubuntu5.13_amd64.deb && wget http://security.ubuntu.com/ubuntu/pool/main/b/boost1.65.1/boost1.65.1_1.65.1+dfsg.orig.tar.bz2 && wget http://security.ubuntu.com/ubuntu/pool/main/m/miniupnpc/libminiupnpc10_1.9.20140610-4ubuntu2_amd64.deb && wget http://security.ubuntu.com/ubuntu/pool/main/m/miniupnpc/libminiupnpc-dev_1.9.20140610-4ubuntu2_amd64.deb
 sudo dpkg -i libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb && sudo dpkg -i libssl1.0-dev_1.0.2n-1ubuntu5.13_amd64.deb && sudo dpkg -i libminiupnpc10_1.9.20140610-4ubuntu2_amd64.deb && sudo dpkg -i libminiupnpc-dev_1.9.20140610-4ubuntu2_amd64.deb
@@ -68,12 +66,10 @@ sudo apt-mark hold libminiupnpc-dev
 
 printf "\n"
 printf "\nSystem and packages successfully updated...\n"
-sleep 2
 
 # Nodejs install #
 printf "\n"
 printf "\nInstalling nodejs...\n"
-sleep 2
 curl -sL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 {
 sudo apt-get -y install nodejs
@@ -82,7 +78,6 @@ sudo apt-get -y install nodejs
 # Mongodb install #
 printf "\n"
 printf "\nInstalling mongodb...\n"
-sleep 2
 curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | \
 sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg \
 --dearmor
@@ -114,7 +109,6 @@ sudo apt-mark hold mongodb-org-tools
 
 # Mongodb startup #
 echo "Enabling MongoDB at startup..."
-sleep 2
 sudo systemctl enable mongod.service
 sudo systemctl start mongod.service
 
