@@ -111,8 +111,10 @@ sudo apt-mark hold mongodb-org-tools
 # Mongodb startup #
 echo ""
 echo "Enabling mongodb at system boot..."
+{
 sudo systemctl enable mongod.service
 sudo systemctl start mongod.service
+} > /dev/null 2>&1
 
 echo ""
 echo "Dependencies setup... Done."
