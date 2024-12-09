@@ -78,7 +78,6 @@ sudo apt-get -y install nodejs
 } > /dev/null 2>&1
 
 # Mongodb install #
-printf "\n"
 printf "\nInstalling mongodb...\n"
 printf "\n"
 curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | \
