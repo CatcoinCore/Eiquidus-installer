@@ -97,8 +97,10 @@ printf "\nCatcoin wallet system service... Done.\n"
 # Mongodb create database and user #
 printf "\n"
 printf "\nDb/user install...\n"
+printf "\n"
 cd $current_dir
 sudo mongosh < config/mongo_init.js
+printf "\n"
 printf "\nDb/user setup... Done.\n"
 
 # Explorer node modules install #
