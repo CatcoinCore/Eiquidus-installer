@@ -101,7 +101,6 @@ cd $current_dir
 {
 sudo mongosh < config/mongo_init.js
 } > /dev/null 2>&1
-printf "\n"
 printf "\nDb/user setup... Done.\n"
 
 # Explorer node modules install #
