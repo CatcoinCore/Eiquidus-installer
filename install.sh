@@ -18,6 +18,7 @@ if [[ $EUID == 0 ]]; then
    adduser explorer
    usermod -aG sudo explorer
    cp -R /root/Eiquidus-installer /home/explorer/Eiquidus-installer
+   find /home -name Eiquidus-installer -type d -exec cp -R {} /home/explorer \;
    chown -R explorer:explorer /home/explorer/Eiquidus-installer
    chmod -R 755 /home/explorer/Eiquidus-installer
    echo ""
