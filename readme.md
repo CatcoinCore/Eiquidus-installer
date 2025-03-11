@@ -11,9 +11,9 @@ To avoid package conflicts, it's best to run this installer on a fresh server in
 Usage:
 
 
-1) Server root user:
+1)
 
-    " apt update && apt -y upgrade "
+    " sudo apt update && sudo apt -y upgrade "
 
 
 
@@ -21,7 +21,7 @@ Usage:
 
     cd Eiquidus-installer
 
-    bash install.sh
+    sudo bash install.sh
 
     Follow on screen prompts
 
