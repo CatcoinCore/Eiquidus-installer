@@ -7,9 +7,12 @@ cat_dir=""
 # Verify the installer has not been invoked as root user #
 if [[ $EUID == 0 ]]; then
    echo ""
-   echo " * Creating explorer user. *"
+   echo " * Creating explorer user *"
    echo ""
-   echo " * Please write down or remember this password & follow on screen prompts. *"
+   echo " * Please write down & remember this password "
+   echo ""
+   echo " * Follow on screen prompts "
+   echo ""
    echo ""
    sleep 10
    adduser explorer
