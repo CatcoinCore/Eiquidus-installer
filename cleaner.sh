@@ -1,3 +1,4 @@
+### Run this if install fails, hangs/freezes for an hour or more ###
 #!/usr/bin/env bash
 cd ~/
 rm -rf .catcoin
