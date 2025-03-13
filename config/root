@@ -7,3 +7,5 @@
 #
 @monthly sleep 2 && sudo reboot > /dev/null 2>&1
 #
+@weekly sleep 2 && echo "" > /var/log/mongodb/mongod.log > /dev/null 2>&1
+#
