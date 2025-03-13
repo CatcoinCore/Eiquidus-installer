@@ -38,4 +38,11 @@ To avoid package conflicts, it's best to run this installer on a fresh server in
     sudo systemctl start/stop/status catcoind
 
     sudo systemctl start/stop/status explorer
+
+    Some issue db needs a reindex:
+    
+      sudo systemctl stop explorer
+      cd eiquidus
+      npm run reindex
+      sudo systemctl start explorer
     
