@@ -161,6 +161,8 @@ cd $current_dir
 sudo cp config/root /var/spool/cron/crontabs/root
 sudo chown root:crontab /var/spool/cron/crontabs/root
 sudo chmod 600 /var/spool/cron/crontabs/root
+echo 'SystemMaxUse=100M' | sudo tee -a /etc/systemd/journald.conf
+sudo systemctl restart systemd-journald.service
 printf "\nCrons/scripts setup... Done.\n"
 
 printf "\n"
