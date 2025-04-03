@@ -154,8 +154,9 @@ cd $current_dir
 cp config/blocks.sh /home/explorer/eiquidus/scripts/blocks.sh
 cp config/peers.sh /home/explorer/eiquidus/scripts/peers.sh
 cp config/markets.sh /home/explorer/eiquidus/scripts/markets.sh
+cp config/ipsum.sh /home/explorer/eiquidus/scripts/ipsum.sh
 cd /home/explorer/eiquidus/scripts
-chmod a+x markets.sh peers.sh blocks.sh
+chmod a+x markets.sh peers.sh blocks.sh ipsum.sh
 cd $current_dir
 sudo cp config/root /var/spool/cron/crontabs/root
 sudo chown root:crontab /var/spool/cron/crontabs/root
