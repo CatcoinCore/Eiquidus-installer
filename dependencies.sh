@@ -115,6 +115,13 @@ sudo systemctl enable mongod.service
 sudo systemctl start mongod.service
 } > /dev/null 2>&1
 
+# Ipset #
+printf "\n"
+printf "\nInstalling ipset bad ip block-list...\n"
+{
+sudo apt-get -y install iptables ipset
+} > /dev/null 2>&1
+
 echo ""
 echo "Dependencies setup... Done."
 echo ""
