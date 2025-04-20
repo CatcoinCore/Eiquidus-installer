@@ -14,7 +14,7 @@ if [[ $EUID == 0 ]]; then
    echo " * Follow on screen prompts "
    echo ""
    echo ""
-   sleep 10
+   sleep 30
    adduser explorer
    usermod -aG sudo explorer
    find . -name Eiquidus-installer -type d -exec cp -R {} /home/explorer \;
@@ -44,7 +44,7 @@ printf "\n"
 printf "\n"
 printf " ** Welcome to Catcoin Explorer Setup! **\n"
 printf "\n"
-printf " This script has been tested on Ubuntu 20/22/24 server.\n"
+printf " This script has been tested on Ubuntu 22/24 server.\n"
 printf "\n"
 printf " First we will check prerequisite packages are installed.\n"
 printf "\n"
@@ -53,8 +53,6 @@ read -p " Press Enter to Continue..."$'\n' Continue
 sudo bash dependencies.sh > install.log &
 dependencies_pid=$!
 printf "\nSystem build packages install...\n"
-printf "\nBuilding boost plus installing additional packages...\n"
-printf "\nThis will take a long time 10-15 minutes... Minimal output... Please wait patiently...\n"
 printf "\n"
 wait $dependencies_pid
 # Check if exit status was non-zero #
@@ -64,28 +62,25 @@ if [ $retVal -ne 0 ]; then
     exit 1
 fi
 
-printf "\nCloning repositories - Catcoin and Eiquidus...\n"
+printf "\nCloning repositories - Catcoin Eiquidus...\n"
 printf "\n"
-cd $current_dir
-git clone https://github.com/CatcoinCore/Catcoin-v0.9.3.0.git
 cd ~/
 git clone https://github.com/CatcoinCore/eiquidus.git -b CatCoin
 
-# Build Catcoin #
+# Catcoin wallet #
 printf "\n"
-printf "\nBuilding Catcoin wallet... This will take some time 5-10 minutes... Please wait patiently...\n"
-cd $current_dir/Catcoin-v0.9.3.0/src
-{
-make -f makefile.unix
-} > /dev/null 2>&1
-strip catcoind
+printf "\nInstalling Catcoin wallet...\n"
+cd $current_dir
+wget https://github.com/CatcoinCore/catcoincore/releases/download/v2.1.1/Catcoin-Linux.zip
+unzip Catcoin-Linux.zip
 mkdir ~/coinds
 cp catcoind ~/coinds/catcoind
+cp catcoin-cli ~/coinds/catcoin-cli
 # wallet config #
 mkdir ~/.catcoin
 cd $current_dir
 cp config/catcoin ~/.catcoin/catcoin.conf
-printf "\nCatcoin wallet build... Done.\n"
+printf "\nCatcoin wallet install... Done.\n"
 
 # Catcoin wallet system service #
 printf "\n"
