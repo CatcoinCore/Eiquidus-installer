@@ -1,5 +1,5 @@
 
-### Catcoin Explorer Installer Ubuntu 20/22/24 ###
+### Catcoin Explorer Installer Ubuntu 22/24 ###
 
 <br>Recommended minimum: 2 core server
 
@@ -22,18 +22,16 @@ To avoid package conflicts, it's best to run this installer on a fresh server in
       Follow on screen prompts
     
     
-  Explorer url:
+  Explorer Site:
 
-    register a domain name point dns at server ip or use with server ip
+    Register a domain name & point dns at server ip.
 
     http://domain-name.com
 
-    http://server-ip
-
-    https://domain-name.com -> with Cloudflare
+    https://domain-name.com - with Cloudflare
 
 
-  Service Control
+  Service Control:
 
     sudo systemctl start/stop/status catcoind
 
@@ -46,3 +44,4 @@ To avoid package conflicts, it's best to run this installer on a fresh server in
       npm run reindex
       sudo systemctl start explorer
     
+
