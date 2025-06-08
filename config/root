@@ -1,5 +1,6 @@
 #
 PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+@reboot sleep 60 && /home/explorer/eiquidus/scripts/ipsum.sh
 @daily sleep 5 && /home/explorer/eiquidus/scripts/ipsum.sh
 */1 * * * * cd /home/explorer/eiquidus/scripts && ./blocks.sh > /dev/null 2>&1
 */5 * * * * cd /home/explorer/eiquidus/scripts && ./peers.sh > /dev/null 2>&1
