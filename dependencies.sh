@@ -44,28 +44,6 @@ printf "\n"
 sudo ntpdate 0.pool.ntp.org
 sudo ntpdate 1.pool.ntp.org
 
-# gcc 10 for U22/24 compatibility #
-//printf "\n"
-//printf "\nInstalling gcc-10...\n"
-//{
-//sudo apt-get -y install g++-10
-//} > /dev/null 2>&1
-//sudo ln -s -f /usr/bin/gcc-10 /usr/bin/gcc
-//sudo ln -s -f /usr/bin/g++-10 /usr/bin/g++
-
-# Additional wallet build packages #
-# Catcoin 0.9.3.0 specific packages - can be remove when updated wallet is released #
-//printf "\n"
-//printf "\nInstalling Catcoin 0.9.3.0 specific build packages...\n"
-//{
-//wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb && wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0-dev_1.0.2n-1ubuntu5.13_amd64.deb && wget http://security.ubuntu.com/ubuntu/pool/main/b/boost1.65.1/boost1.65.1_1.65.1+dfsg.orig.tar.bz2 && wget http://security.ubuntu.com/ubuntu/pool/main/m/miniupnpc/libminiupnpc10_1.9.20140610-4ubuntu2_amd64.deb && wget http://security.ubuntu.com/ubuntu/pool/main/m/miniupnpc/libminiupnpc-dev_1.9.20140610-4ubuntu2_amd64.deb
-//sudo dpkg -i libssl1.0.0_1.0.2n-1ubuntu5.13_amd64.deb && sudo dpkg -i libssl1.0-dev_1.0.2n-1ubuntu5.13_amd64.deb && sudo dpkg -i libminiupnpc10_1.9.20140610-4ubuntu2_amd64.deb && sudo dpkg -i libminiupnpc-dev_1.9.20140610-4ubuntu2_amd64.deb
-//tar xvf boost1.65.1_1.65.1+dfsg.orig.tar.bz2 && cd boost_1_65_1 && ./bootstrap.sh && sudo ./b2 install && sudo ldconfig
-//} > /dev/null 2>&1
-
-# Catcoin 0.9.3.0 specific - can be removed when updated wallet is released #
-//sudo apt-mark hold libminiupnpc-dev
-
 printf "\n"
 printf "\nSystem and packages successfully updated...\n"
 
