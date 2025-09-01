@@ -6,7 +6,7 @@ global
     stats timeout 30s
     user haproxy
     group haproxy
-    maxconn 5000
+    maxconn 500
     daemon
 
     ca-base /etc/ssl/certs
@@ -33,10 +33,11 @@ defaults
 
 frontend explorer_front
   mode tcp
-  maxconn 1000
+  maxconn 200
   bind *:80
     default_backend explorer_back
-    maxconn 1000
+    mode tcp
+    maxconn 200
 backend explorer_back
     mode tcp
-    server explorer 127.0.0.1:3001 check maxconn 1000
+    server explorer 127.0.0.1:3001 maxconn 200
