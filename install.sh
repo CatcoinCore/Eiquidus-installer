@@ -106,8 +106,9 @@ printf "\nDb/user setup... Done.\n"
 # Explorer node modules install #
 printf "\n"
 printf "\nNode modules install...\n"
-cd /home/explorer/eiquidus
-npm install --only=prod
+cd $current_dir
+cd config
+tar -xzf node-modules.tar.gz -C /home/explorer/eiquidus
 printf "\nNode modules... Done.\n"
 
 # Catcoin explorer system service #
@@ -156,7 +157,7 @@ cd $current_dir
 sudo cp config/root /var/spool/cron/crontabs/root
 sudo chown root:crontab /var/spool/cron/crontabs/root
 sudo chmod 600 /var/spool/cron/crontabs/root
-echo 'SystemMaxUse=100M' | sudo tee -a /etc/systemd/journald.conf
+echo 'SystemMaxUse=100M' | sudo tee -a /etc/systemd/journald.conf > /dev/null 2>&1
 sudo systemctl restart systemd-journald.service
 printf "\nCrons/scripts setup... Done.\n"
 
