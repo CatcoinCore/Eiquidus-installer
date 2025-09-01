@@ -17,7 +17,7 @@ if [[ $EUID == 0 ]]; then
    sleep 30
    adduser explorer
    usermod -aG sudo explorer
-   find . -name Eiquidus-installer -type d -exec cp -R {} /home/explorer \;
+   sudo find . -name Eiquidus-installer -type d -exec cp -R {} /home/explorer \;
    chown -R explorer:explorer /home/explorer/Eiquidus-installer
    chmod -R 755 /home/explorer/Eiquidus-installer
    echo ""
