@@ -1,4 +1,8 @@
  
+# User/pass hard coded here and in explorer settings config,
+# best to change them and restart wallet/explorer services.
+# Todo: Add random generated rpc user/pass
+
 server=1
 listen=1
 daemon=1
