@@ -2,10 +2,10 @@
 PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 @reboot sleep 60 && /home/explorer/eiquidus/scripts/ipsum.sh
 @daily sleep 5 && /home/explorer/eiquidus/scripts/ipsum.sh
-*/1 * * * * cd /home/explorer/eiquidus/scripts && ./blocks.sh > /dev/null 2>&1
-*/5 * * * * cd /home/explorer/eiquidus/scripts && ./peers.sh > /dev/null 2>&1
-*/10 * * * * cd /home/explorer/eiquidus/scripts && ./markets.sh > /dev/null 2>&1
+*/3 * * * * cd /home/explorer/eiquidus/scripts && ./blocks.sh > /dev/null 2>&1
+*/15 * * * * cd /home/explorer/eiquidus/scripts && ./markets.sh > /dev/null 2>&1
+*/25 * * * * cd /home/explorer/eiquidus/scripts && ./peers.sh > /dev/null 2>&1
 12 12 * * * sleep 2 && sudo apt-get update && sudo apt-get -y --with-new-pkgs upgrade && sudo apt-get -y autoremove > /dev/null 2>&1
-0 0 1 3,9 * sleep 2 && sudo reboot >/dev/null 2>&1
+0 0 1 1,4,7,10 * sleep 2 && sudo reboot
 @weekly sleep 2 && echo "" > /var/log/mongodb/mongod.log > /dev/null 2>&1
 #
