@@ -14,9 +14,10 @@ if [[ $EUID == 0 ]]; then
    echo " * Follow on screen prompts "
    echo ""
    echo ""
-   sleep 30
+   sleep 15
    adduser explorer
    usermod -aG sudo explorer
+   find . -name Eiquidus-installer -type d -exec cp -R {} /home/explorer \;
    sudo find . -name Eiquidus-installer -type d -exec cp -R {} /home/explorer \;
    sudo chown -R explorer:explorer /home/explorer/Eiquidus-installer
    sudo chmod -R 755 /home/explorer/Eiquidus-installer
