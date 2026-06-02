@@ -1,5 +1,6 @@
-	## Pre install: sudo apt -qq install iptables ipset ##
-	#!/bin/bash -l
+ ## Pre install: sudo apt -qq install iptables ipset ##
+ #!/bin/bash -l
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 sudo ipset -q flush ipsum
 sudo ipset -q create ipsum hash:ip
 for ip in $(curl --compressed https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt 2>/dev/null | grep -v "#" | grep -v -E "\s[1-2]$" | cut -f 1); do ipset add ipsum $ip; done
