@@ -1,0 +1,46 @@
+
+By default, iptables rules and ipset lists are stored in the Linux kernel's volatile memory and are completely wiped upon reboot. To make them permanent, you need to save them to a file and configure your system to restore them automatically during boot.
+
+Step 1: Save Your Current Rules and Sets
+
+Before rebooting, manually dump your active configuration into configuration files so the system knows exactly what to load later.
+
+Save ipset lists:
+sudo ipset save > /etc/ipset.conf
+
+Save iptables rules:
+On Debian/Ubuntu:
+sudo mkdir -p /etc/iptables
+sudo iptables-save > /etc/iptables/rules.v4
+sudo ip6tables-save > /etc/iptables/rules.v6
+
+Step 2: Configure Automatic Restoration
+
+Because the order of operations is important (the ipset lists must be restored before the iptables rules that depend on them), set up the proper persistence service depending on your Linux distribution:
+For Debian / Ubuntu / Linux Mint
+Install the netfilter-persistent package, which handles both iptables and ipsets on modern systems:
+
+sudo apt update
+sudo apt install netfilter-persistent iptables-persistent
+
+To ensure ipset automatically restores your saved rules, run sudo dpkg-reconfigure iptables-persistent to verify it saves/loads on startup, or manually enable the service:
+sudo systemctl enable netfilter-persistent
+
+Step 3: (Optional) The Universal @reboot Method
+
+If your distribution does not natively support ipset restoring, you can automate it via cron. This bypasses service conflicts by executing the restore scripts directly at startup.
+
+Open your crontab as root:
+sudo crontab –e
+
+Append these lines at the bottom (adjust the paths if necessary):
+@reboot /sbin/ipset restore </etc/ipset.conf
+@reboot /sbin/iptables-restore </etc/iptables/rules.v4
+
+Save and exit.
+
+The @reboot directive will safely execute the restores the moment your system starts.
+
+Verification Tip:
+After setting this up, reboot your server and run sudo ipset list and sudo iptables -L to confirm your rules persisted successfully.
+
