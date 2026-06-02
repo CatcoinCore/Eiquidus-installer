@@ -36,8 +36,6 @@ frontend explorer_front
   maxconn 200
   bind *:80
     default_backend explorer_back
-    mode tcp
-    maxconn 200
 backend explorer_back
     mode tcp
     server explorer 127.0.0.1:3001 maxconn 200
