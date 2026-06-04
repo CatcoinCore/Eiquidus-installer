@@ -4,13 +4,22 @@ Requires=catcoind.service
 After=network.target
 
 [Service]
+Type=simple
 User=explorer
 Group=explorer
+
 WorkingDirectory=/home/explorer/eiquidus
+TimeoutStartSec=3600
+ExecStartPre=/bin/sleep 60
 ExecStart=/usr/bin/npm start
-Type=simple
-Restart=always
-RestartSec=30
+#ExecStart=/usr/bin/node server.js # needs test/checks
+#npm start can cause zombie processes & increased mem usage
+#ExecStop= # needs test/checks
+
+Restart=on-failure
+RestartSec=60
+
+#Environment=NODE_ENV=production # needs test/checks
 
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
