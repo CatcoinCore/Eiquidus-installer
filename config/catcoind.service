@@ -3,14 +3,20 @@ Description=Catcoin Wallet Node
 After=network.target
 
 [Service]
+Type=simple
 User=explorer
 Group=explorer
+
 PIDFile=/home/explorer/.catcoin/catcoind.pid
+
+TimeoutStartSec=3600
+ExecStartPre=/bin/sleep 30
 ExecStart=/home/explorer/coinds/catcoind -daemon -pid=/home/explorer/.catcoin/catcoind.pid \
--conf=/home/explorer/.catcoin/catcoin.conf -datadir=/home/explorer/.catcoin -disablewallet
-Type=simple
-Restart=always
+-conf=/home/explorer/.catcoin/catcoin.conf -datadir=/home/explorer/.catcoin
+ExecStop=/home/explorer/coinds/catcoin-cli -datadir=/home/explorer/.catcoin stop
+
+Restart=on-failure
 RestartSec=30
 
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
